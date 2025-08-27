@@ -57,6 +57,7 @@ class Circuit():
     def to_qasm(self):
         lines = []
         lines.append("OPENQASM 2.0;")
+        lines.append("include \"qelib1.inc\";")
         lines.append(f"qreg q[{self.num_qubits}];")
         lines.append(f"creg c[{self.num_clbits}];")
         for instr in self.instructions:

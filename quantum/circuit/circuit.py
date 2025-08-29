@@ -113,3 +113,20 @@ class Circuit():
         for idx, theta in targets:
             self.instructions.append(f"rz({theta}) q[{idx}];")
         return self
+    
+
+    def apply_cz(self, pairs):
+        for ctrl, tgt in pairs:
+            self.instructions.append(f"cz q[{ctrl}], q[{tgt}];")
+        return self
+
+    def apply_swap(self, pairs):
+        for a, b in pairs:
+            self.instructions.append(f"swap q[{a}], q[{b}];")
+        return self
+
+    def reset(self, qubit_indices):
+        for i in qubit_indices:
+            self.instructions.append(f"reset q[{i}];")
+        return self
+
